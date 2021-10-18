@@ -63,7 +63,7 @@ internal struct Math: Fragment {
     func html(usingURLs urls: NamedURLCollection,
               modifiers: ModifierCollection) -> String {
         let modeString = displayMode ? "display" : "inline"
-        return "<span class=\"math \(modeString)\">\(tex)</span>"
+        return "<span class=\"math \(modeString)\">\(plainText())</span>"
     }
     
     func plainText() -> String {

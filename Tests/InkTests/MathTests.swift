@@ -10,17 +10,17 @@ import Ink
 final class MathTests: XCTestCase {
     func testInlineMath() {
         let html = MarkdownParser().html(from: #"\(Hello \Latex\)"#)
-        XCTAssertEqual(html, #"<p><span class="math inline">Hello \Latex</span></p>"#)
+        XCTAssertEqual(html, #"<p><span class="math inline">\(Hello \Latex\)</span></p>"#)
     }
     
     func testDisplayMath() {
         let html = MarkdownParser().html(from: #"\[Hello \Latex\]"#)
-        XCTAssertEqual(html, #"<p><span class="math display">Hello \Latex</span></p>"#)
+        XCTAssertEqual(html, #"<p><span class="math display">\[Hello \Latex\]</span></p>"#)
     }
     
     func testMathWithEscape() {
         let html = MarkdownParser().html(from: #"Asterix \* and \(Hello \Latex\)"#)
-        XCTAssertEqual(html, #"<p>Asterix * and <span class="math inline">Hello \Latex</span></p>"#)
+        XCTAssertEqual(html, #"<p>Asterix * and <span class="math inline">\(Hello \Latex\)</span></p>"#)
     }
     func testDisplayMultiLineProgression() {
         let html = MarkdownParser().html(from: #"""
@@ -34,7 +34,7 @@ final class MathTests: XCTestCase {
             """#)
         print(html)
         XCTAssertEqual(html, #"""
-            <p><span class="math display">\begin{aligned} y&amp;=\left(x-r\right)\left(x-s\right)\\ y&amp;=\left(x-\left(-7\right)\right)\left(x-\left(-2\right)\right)\\ y&amp;=\left(x+7\right)\left(x+2\right)\\ y&amp;=x^2+9x+14\\ y&amp;=x^2+bx+c\\ \end{aligned}</span></p>
+            <p><span class="math display">\[\begin{aligned} y&amp;=\left(x-r\right)\left(x-s\right)\\ y&amp;=\left(x-\left(-7\right)\right)\left(x-\left(-2\right)\right)\\ y&amp;=\left(x+7\right)\left(x+2\right)\\ y&amp;=x^2+9x+14\\ y&amp;=x^2+bx+c\\ \end{aligned}\]</span></p>
             """#)
     }
     
@@ -48,7 +48,7 @@ final class MathTests: XCTestCase {
                 \] as above.
             """#)
         XCTAssertEqual(html, #"""
-            <p>We can write a vector in a Hilbert space as a sum of basis and projection coefficients <span class="math display">\begin{aligned} \left\vert\psi\right\rangle &amp;= \sum_iC_i\left\vert\varphi_i\right\rangle\\ &amp;=\left\langle\varphi_i\vert\psi\right\rangle \left\vert\varphi_i\right\rangle \end{aligned}</span> as above.</p>
+            <p>We can write a vector in a Hilbert space as a sum of basis and projection coefficients <span class="math display">\[\begin{aligned} \left\vert\psi\right\rangle &amp;= \sum_iC_i\left\vert\varphi_i\right\rangle\\ &amp;=\left\langle\varphi_i\vert\psi\right\rangle \left\vert\varphi_i\right\rangle \end{aligned}\]</span> as above.</p>
             """#)
     }
 }
